@@ -30,7 +30,7 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
     @Override
     public void getPresenter() {
         Log.d("L", "getPresenter");
-        Flowable<String> pong = httpApi.getPong();
+        Flowable<String> pong = httpApi.getPing();
         pong.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<String>() {
