@@ -18,7 +18,12 @@ public class RetrofitHttp implements HttpApi {
     }
 
     @Override
-    public Flowable<String> getPong() {
-        return httpUri.getPong();
+    public Flowable<String> getPing() {
+        return httpUri.getPing();
+    }
+
+    @Override
+    public Flowable<String> getPong(String s) {
+        return httpUri.getPong(s);
     }
 }

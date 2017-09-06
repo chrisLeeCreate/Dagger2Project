@@ -8,6 +8,8 @@ import io.reactivex.Flowable;
 
 public interface HttpApi {
 
-    Flowable<String> getPong();
+    Flowable<String> getPing();
+
+    Flowable<String> getPong(String s);
 
 }
