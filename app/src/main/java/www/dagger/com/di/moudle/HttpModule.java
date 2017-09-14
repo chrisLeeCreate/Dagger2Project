@@ -8,6 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import www.dagger.com.http.HttpUri;
+import www.dagger.com.utils.StringConverterFactory;
 
 /**
  * Created by lishaowei on 2017/9/6.
@@ -24,8 +25,9 @@ public class HttpModule {
     @Provides
     Retrofit getRetrofit(OkHttpClient pingClient, Retrofit.Builder pingInstance) {
         return pingInstance
-                .baseUrl("https://api.boxfish.cn")
+                .baseUrl("https://beta-vcenter.talbrain.com")
                 .client(pingClient)
+                .addConverterFactory(new StringConverterFactory())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

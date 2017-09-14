@@ -4,7 +4,6 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
@@ -30,13 +29,13 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
     @Override
     public void getPresenter() {
         Log.d("L", "getPresenter");
-        Flowable<String> pong = httpApi.getPing();
-        pong.subscribeOn(Schedulers.io())
+        addSubscribe(httpApi.getPing()
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSubscriber<String>() {
                     @Override
-                    public void onNext(String string) {
-                        System.out.println(string);
+                    public void onNext(String s) {
+                        System.out.println(s);
                         mView.getViewSucc();
                         Log.d("L", "onNext");
                     }
@@ -50,9 +49,6 @@ public class MainPresenter extends RxPresenter<MainContract.View> implements Mai
                     public void onComplete() {
                         Log.d("L", "onComplete");
                     }
-                });
-        mView.getViewSucc();
-
-
+                }));
     }
 }

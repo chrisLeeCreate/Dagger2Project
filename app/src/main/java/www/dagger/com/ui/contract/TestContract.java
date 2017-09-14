@@ -13,6 +13,6 @@ public interface TestContract {
     }
 
     interface Presenter extends BasePresenter<TestContract.View> {
-        void getPresenter();
+        void getPresenter(String token);
     }
 }
