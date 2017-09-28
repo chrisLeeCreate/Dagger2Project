@@ -3,11 +3,15 @@ package www.dagger.com.http;
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 import www.dagger.com.model.BaseResponse;
 import www.dagger.com.model.OrderWaitResult;
 
@@ -41,6 +45,9 @@ public interface HttpUri {
     @POST("/v1/order/finishorder")
     Call<String> getFinishOrRefundOrder(@Field("page") String page, @Field("token") String token);
 
+    @Streaming
+    @GET
+    Observable<ResponseBody> downloadFile(@Url String fileUrl);
 }
 
 
